@@ -7,23 +7,6 @@ const adverts = axios.create({
 
 export const fetchAdverts = createAsyncThunk(
   'fetchAdverts',
-  async (_, { rejectWithValue }) => {
-    try {
-      const { data } = await adverts.get('/adverts', {
-        params: {
-          p: 1,
-          l: 12,
-        },
-      });
-      return data;
-    } catch (err) {
-      rejectWithValue(err);
-    }
-  }
-);
-
-export const loadMore = createAsyncThunk(
-  'loadMore',
   async (page, { rejectWithValue }) => {
     try {
       const { data } = await adverts.get('/adverts', {
