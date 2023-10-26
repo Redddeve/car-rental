@@ -1,22 +1,28 @@
 import { createGlobalStyle } from 'styled-components';
+import 'modern-normalize';
+import 'react-toastify/dist/ReactToastify.css';
+import './fonts.css';
 
 export const GlobalStyles = createGlobalStyle`
 
-@font-face {
-  font-family: 'Manrope';
-  src: url('./fonts/Manrope-Regular.ttf'), 
-  url('./fonts/Manrope-Medium.ttf'), 
-  url('./fonts/Manrope-SemiBold.ttf');
-}
+:root {
+    --bg: #fff;
+    --inputBg: #F7F7FB;
+    --subBg: #F9F9F9;
+    --general: #121417;
+    --subText: #12141780;
+    --auxSubText: #363535;
+    --btnMain: #3470FF;
+    --hoverActive: #0B44CD;
+  }
 
 body {
-  padding: 20px;
   margin: 0;
   font-family: 'Manrope', sans-serif;
-  font-size: 12px;
+  font-size: 16px;
   line-height: 1.5;
-  background-color: #fff;
-  color: rgba(18, 20, 23, 0.50)
+  background-color: var(--bg);
+  color: var(--general)
 }
 
 ul,
