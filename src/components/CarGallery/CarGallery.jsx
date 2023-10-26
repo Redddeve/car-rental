@@ -15,13 +15,16 @@ import {
 import icon from '../../images/icon.svg';
 import NoImg from '../../images/car-placeholder.jpg';
 import { useSelector } from 'react-redux';
-import { selectFavorites } from 'redux/carRent/selectors';
+import { selectFavorites, selectLoading } from 'redux/carRent/selectors';
+import Loader from 'components/Loader';
 
 const CarGallery = ({ cars, onClickFavorite }) => {
   const favCars = useSelector(selectFavorites);
+  const loading = useSelector(selectLoading);
   return (
     <>
       <StyledList>
+        {loading && <Loader />}
         {cars?.map(car => {
           const {
             id,
@@ -44,7 +47,7 @@ const CarGallery = ({ cars, onClickFavorite }) => {
           return (
             <StyledItem key={id}>
               <StyledImg
-                src={img}
+                src={`${img}`}
                 alt={model}
                 onError={e => {
                   e.currentTarget.src = NoImg;

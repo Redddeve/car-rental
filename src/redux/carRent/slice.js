@@ -1,5 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { fetchAdverts } from './operations';
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+import { fetchAdverts, loadMore } from './operations';
 
 const initialState = {
   cars: [],
@@ -25,17 +25,24 @@ const slice = createSlice({
   extraReducers: builder =>
     builder
       .addCase(fetchAdverts.fulfilled, (state, { payload }) => {
+        state.cars = payload;
+        state.loading = false;
+      })
+      .addCase(loadMore.fulfilled, (state, { payload }) => {
         state.cars.push(...payload);
         state.loading = false;
       })
-      .addCase(fetchAdverts.pending, state => {
+      .addMatcher(isAnyOf(fetchAdverts.pending, loadMore.pending), state => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchAdverts.rejected, (state, { payload }) => {
-        state.loading = false;
-        state.error = payload;
-      }),
+      .addMatcher(
+        isAnyOf(fetchAdverts.rejected, loadMore.rejected),
+        (state, { payload }) => {
+          state.loading = false;
+          state.error = payload;
+        }
+      ),
 });
 
 export const { addToFavorite, removeFromFavorite } = slice.actions;
