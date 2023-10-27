@@ -20,7 +20,7 @@ import { Loader } from 'components/Loader';
 import { useModalContext } from 'context/useModalContext';
 import Modal from 'components/Modal/Modal';
 
-const CarGallery = ({ cars, onClickFavorite }) => {
+const CarGallery = ({ cars, onFavoriteClick }) => {
   const { isOpen, open, CarId, setId } = useModalContext();
   const favCars = useSelector(selectFavorites);
   const loading = useSelector(selectLoading);
@@ -83,7 +83,7 @@ const CarGallery = ({ cars, onClickFavorite }) => {
               </SubText>
               <ModalBtn onClick={() => modalContent(id)}>Learn more</ModalBtn>
 
-              <FavBtn onClick={() => onClickFavorite(car, favorite)}>
+              <FavBtn onClick={() => onFavoriteClick(car, favorite)}>
                 <StyledSvg
                   width="18px"
                   height="18px"
