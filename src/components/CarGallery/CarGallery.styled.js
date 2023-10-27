@@ -58,7 +58,7 @@ export const CarPrice = styled.p`
 export const SubText = styled.p`
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  column-gap: 6px;
   color: var(--subText);
   font-size: 12px;
   margin-bottom: 28px;
@@ -84,11 +84,13 @@ export const FavBtn = styled.button`
   background: transparent;
   border: none;
   transition: ease;
+  padding: 0;
 `;
 
 export const StyledSvg = styled.svg`
   stroke: ${props => props.$strokeSvg};
   fill: ${props => props.$fillSvg};
+
   &:hover {
     fill: var(--hoverActive);
     stroke: none;

@@ -12,19 +12,28 @@ import {
   StyledSvg,
   SubText,
 } from './CarGallery.styled';
-import icon from '../../images/icon.svg';
+import icon from '../../images/icons.svg';
 import NoImg from '../../images/car-placeholder.jpg';
 import { useSelector } from 'react-redux';
 import { selectFavorites, selectLoading } from 'redux/carRent/selectors';
-import Loader from 'components/Loader';
+import { Loader } from 'components/Loader';
+import { useModalContext } from 'context/useModalContext';
+import Modal from 'components/Modal/Modal';
 
 const CarGallery = ({ cars, onClickFavorite }) => {
+  const { isOpen, open, CarId, setId } = useModalContext();
   const favCars = useSelector(selectFavorites);
   const loading = useSelector(selectLoading);
+
+  function modalContent(id) {
+    setId(id);
+    open();
+  }
+
   return (
     <>
+      {loading && <Loader />}
       <StyledList>
-        {loading && <Loader />}
         {cars?.map(car => {
           const {
             id,
@@ -40,7 +49,7 @@ const CarGallery = ({ cars, onClickFavorite }) => {
           } = car;
           const addressArr = address.split(',');
           let favorite = false;
-          if (favCars.find(car => car.id === id)) {
+          if (favCars.find(favCar => favCar.id === id)) {
             favorite = true;
           }
 
@@ -52,38 +61,28 @@ const CarGallery = ({ cars, onClickFavorite }) => {
                 onError={e => {
                   e.currentTarget.src = NoImg;
                 }}
+                loading="lazy"
                 draggable="false"
               />
               <NameWrapper>
                 <CarTitle>
-                  {`${make}`}
+                  {make}
                   <StyledSpan>
-                    {`${model}`}
+                    {model}
                     <DefSpan>,</DefSpan>
                   </StyledSpan>
-                  {`${year}`}
+                  {year}
                 </CarTitle>
                 <CarPrice>{rentalPrice}</CarPrice>
               </NameWrapper>
               <SubText>
-                <span>{`${addressArr[1]}`}</span>|
-                <span>{`${addressArr[2]}`}</span>|
-                <span>{`${rentalCompany}`}</span>
-                <span>Premium</span>|<span>{`${type}`}</span>
-                <span>{`${model}`}</span>|<span>{`${id}`}</span>
-                <span>{`${functionalities[0]}`}</span>
+                <span>{addressArr[1]}</span>|<span>{addressArr[2]}</span>|
+                <span>{rentalCompany}</span>|<span>Premium</span>|
+                <span>{type}</span>|<span>{model}</span>|<span>{id}</span>|
+                <span>{functionalities[0]}</span>
               </SubText>
-              <ModalBtn
-                onClick={() => {
-                  //   const modal = document.getElementById(`${id}`);
-                  //   if (modal) {
-                  //     modal.showModal();
-                  //   }
-                }}
-              >
-                Learn more
-              </ModalBtn>
-              {/* <Modal id={id} /> */}
+              <ModalBtn onClick={() => modalContent(id)}>Learn more</ModalBtn>
+
               <FavBtn onClick={() => onClickFavorite(car, favorite)}>
                 <StyledSvg
                   width="18px"
@@ -98,6 +97,7 @@ const CarGallery = ({ cars, onClickFavorite }) => {
           );
         })}
       </StyledList>
+      {isOpen ? <Modal id={CarId} /> : null}
     </>
   );
 };
