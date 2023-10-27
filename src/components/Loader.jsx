@@ -1,6 +1,6 @@
 import { Oval } from 'react-loader-spinner';
 
-const Loader = () => {
+export const Loader = () => {
   return (
     <Oval
       height={80}
@@ -17,14 +17,12 @@ const Loader = () => {
         left: 0,
         zIndex: '500',
       }}
-      wrapperClass="Oval-wrapper"
+      wrapperClass="Load-wrapper"
       visible={true}
-      ariaLabel="oval-loading"
+      ariaLabel="loading"
       secondaryColor="#359c54"
       strokeWidth={2}
       strokeWidthSecondary={2}
     />
   );
 };
-
-export default Loader;
