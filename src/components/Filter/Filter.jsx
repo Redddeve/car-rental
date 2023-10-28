@@ -2,7 +2,6 @@ import { components } from 'react-select';
 import { Controller, useForm } from 'react-hook-form';
 import { VscChevronDown, VscChevronUp } from 'react-icons/vsc';
 import { useDispatch } from 'react-redux';
-import { toast } from 'react-toastify';
 import {
   FilterWrapper,
   InputLeft,
@@ -13,7 +12,7 @@ import {
   StyledSelector,
 } from './Filter.styled';
 import { makes, prices } from './options';
-import { fetchFiltered } from 'redux/carRent/operations';
+import { fetchAdverts, fetchFiltered } from 'redux/carRent/operations';
 import { filterFavorites } from 'redux/carRent/slice';
 
 const Filter = ({ isCatalog }) => {
@@ -36,29 +35,29 @@ const Filter = ({ isCatalog }) => {
   };
 
   function onSubmit({ price, make, mileageFrom, mileageTo }) {
-    if (price || make || mileageFrom || mileageTo) {
-      if (isCatalog) {
-        dispatch(
-          fetchFiltered({
-            price: price?.value,
-            make: make?.value,
-            mileageFrom,
-            mileageTo,
-          })
-        );
-      } else {
-        dispatch(
-          filterFavorites({
-            price: price?.value,
-            make: make?.value,
-            mileageFrom,
-            mileageTo,
-          })
-        );
-      }
+    console.log(price, make, mileageFrom, mileageTo);
+    console.log(price || make || mileageFrom || mileageTo ? 'true' : 'false');
+    if (isCatalog) {
+      console.log('catalog');
+      price || make || mileageFrom || mileageTo
+        ? dispatch(
+            fetchFiltered({
+              price: price?.value,
+              make: make?.value,
+              mileageFrom,
+              mileageTo,
+            })
+          )
+        : dispatch(fetchAdverts(1));
     } else {
-      toast.info(
-        'In order to filter the list you need to fill at least one field'
+      console.log('fav');
+      dispatch(
+        filterFavorites({
+          price: price?.value,
+          make: make?.value,
+          mileageFrom,
+          mileageTo,
+        })
       );
     }
   }

@@ -19,9 +19,9 @@ export const FilterFavorites = (favorites, filterObj) => {
             Number(mileageTo) >= car.mileage
         );
       } else if (mileageFrom) {
-        favArr = favArr.filter(car => Number(mileageFrom) >= car.mileage);
+        favArr = favArr.filter(car => Number(mileageFrom) <= car.mileage);
       } else if (mileageTo) {
-        favArr = favArr.filter(car => Number(mileageTo) <= car.mileage);
+        favArr = favArr.filter(car => Number(mileageTo) >= car.mileage);
       }
     } else {
       if (price) {
@@ -32,15 +32,16 @@ export const FilterFavorites = (favorites, filterObj) => {
       if (mileageFrom && mileageTo) {
         favArr = favArr.filter(
           car =>
-            Number(mileageFrom) >= car.mileage &&
-            Number(mileageTo) <= car.mileage
+            Number(mileageFrom) <= car.mileage &&
+            Number(mileageTo) >= car.mileage
         );
       } else if (mileageFrom) {
-        favArr = favArr.filter(car => Number(mileageFrom) >= car.mileage);
+        favArr = favArr.filter(car => Number(mileageFrom) <= car.mileage);
       } else if (mileageTo) {
-        favArr = favArr.filter(car => Number(mileageTo) <= car.mileage);
+        favArr = favArr.filter(car => Number(mileageTo) >= car.mileage);
       }
     }
+
     if (favArr.length === 0) {
       toast.error('No cars found for your search criteria');
       return [];

@@ -43,7 +43,7 @@ export const loadMore = createAsyncThunk(
 export const fetchFiltered = createAsyncThunk(
   'fetchFiltered',
   async (filterObj, { rejectWithValue }) => {
-    const { make, mileageFrom, mileageTo, price, page = 1 } = filterObj;
+    const { make, price, mileageFrom, mileageTo, page = 1 } = filterObj;
 
     try {
       let filteredArr = [];

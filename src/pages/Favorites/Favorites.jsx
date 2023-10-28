@@ -2,7 +2,11 @@ import CarGallery from 'components/CarGallery/CarGallery';
 import LoadMoreBtn from 'components/LoadMoreBtn/LoadMoreBtn';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectFavorites, selectLoading } from 'redux/carRent/selectors';
+import {
+  selectFavorites,
+  selectFilteredArr,
+  selectLoading,
+} from 'redux/carRent/selectors';
 import { removeFromFavorite } from 'redux/carRent/slice';
 import { HiddenTitle } from 'styles/commonStyled';
 import {
@@ -18,16 +22,17 @@ const Favorites = () => {
   const [carsToRender, setCarsToRender] = useState([]);
   const dispatch = useDispatch();
   const favorites = useSelector(selectFavorites);
+  let filtered = useSelector(selectFilteredArr);
   const loading = useSelector(selectLoading);
 
-  // if (filteredCars.length === 0) {
-  //   filteredCars = favoriteCars;
-  // }
+  if (filtered.length === 0) {
+    filtered = favorites;
+  }
 
   useEffect(() => {
-    const slicedCars = favorites.slice(0, page * 12);
+    const slicedCars = filtered.slice(0, page * 12);
     setCarsToRender(slicedCars);
-  }, [page, favorites]);
+  }, [page, filtered]);
 
   function removeFavorite(car) {
     dispatch(removeFromFavorite(car.id));
@@ -45,7 +50,7 @@ const Favorites = () => {
         <>
           <Filter isCatalog={false} />
           <CarGallery cars={carsToRender} onFavoriteClick={removeFavorite} />
-          {!loading && carsToRender.length !== favorites.length && (
+          {!loading && carsToRender.length % 12 === 0 && (
             <LoadMoreBtn onLoadMore={onLoadMore} />
           )}
         </>

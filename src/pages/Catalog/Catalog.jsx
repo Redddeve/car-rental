@@ -35,8 +35,8 @@ const Catalog = () => {
     if (!isFiltered) {
       dispatch(loadMore(nextPage));
     } else {
-      const DataLoad = { ...filter, page: nextPage };
-      dispatch(fetchFiltered(DataLoad));
+      const filterParams = { ...filter, page: nextPage };
+      dispatch(fetchFiltered(filterParams));
     }
   }
 
