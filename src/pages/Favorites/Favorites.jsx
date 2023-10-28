@@ -11,6 +11,7 @@ import {
   NoFavTitle,
   NoFavWrapper,
 } from './Favorites.styled';
+import Filter from 'components/Filter/Filter';
 
 const Favorites = () => {
   const [page, setPage] = useState(1);
@@ -18,6 +19,10 @@ const Favorites = () => {
   const dispatch = useDispatch();
   const favorites = useSelector(selectFavorites);
   const loading = useSelector(selectLoading);
+
+  // if (filteredCars.length === 0) {
+  //   filteredCars = favoriteCars;
+  // }
 
   useEffect(() => {
     const slicedCars = favorites.slice(0, page * 12);
@@ -38,6 +43,7 @@ const Favorites = () => {
       <HiddenTitle>Favorite Cars</HiddenTitle>
       {carsToRender.length ? (
         <>
+          <Filter isCatalog={false} />
           <CarGallery cars={carsToRender} onFavoriteClick={removeFavorite} />
           {!loading && carsToRender.length !== favorites.length && (
             <LoadMoreBtn onLoadMore={onLoadMore} />

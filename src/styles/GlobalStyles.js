@@ -12,9 +12,17 @@ export const GlobalStyles = createGlobalStyle`
     --general: #121417;
     --subText: #12141780;
     --auxSubText: #363535;
+    --filterSubText: #8A8A89;
     --btnMain: #3470FF;
     --hoverActive: #0B44CD;
   }
+
+  input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 
 body {
   margin: 0;
