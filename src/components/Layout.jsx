@@ -21,6 +21,5 @@ const Layout = () => {
 export default Layout;
 
 const OutletWrapper = styled.div`
-  padding: 20px;
   margin: 0 auto;
 `;

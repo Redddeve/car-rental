@@ -7,7 +7,7 @@ export const StyledHeader = styled.header`
   box-shadow: gray 0px 4px 8px;
   gap: 20px;
   padding: 16px;
-  margin-bottom: 16px;
+  /* margin-bottom: 16px; */
   font-size: 18px;
 `;
 
@@ -22,16 +22,17 @@ export const StyledNavLink = styled(NavLink)`
   align-items: center;
   gap: 10px;
   padding: 10px 20px;
-  border-radius: 4px;
+  border-radius: 6px;
   text-decoration: none;
   font-size: 20px;
   font-weight: 600;
   color: black;
 
   &.active {
-    color: var(--hoverActive);
+    color: var(--bg);
+    background-color: var(--btnMain);
   }
   &:hover:not(.active) {
-    background-color: lightblue;
+    color: var(--hoverActive);
   }
 `;

@@ -1,10 +1,13 @@
 import { HiddenTitle } from 'styles/commonStyled';
+import { StyledHero } from './Home.styled';
 
 const Home = () => {
   return (
     <section>
-      <HiddenTitle>Homepage</HiddenTitle>
-      <div></div>
+      <HiddenTitle>Home page</HiddenTitle>
+      <StyledHero>
+        <div></div>
+      </StyledHero>
     </section>
   );
 };
