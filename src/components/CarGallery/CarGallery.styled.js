@@ -84,7 +84,7 @@ export const FavBtn = styled.button`
   top: 8px;
   background: transparent;
   border: none;
-  transition: ease;
+  transition: ease all;
   padding: 0;
 `;
 

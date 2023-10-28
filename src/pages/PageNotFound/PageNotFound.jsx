@@ -1,20 +1,26 @@
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
 import { HiddenTitle } from 'styles/commonStyled';
+import {
+  BigText,
+  BiggerText,
+  CenterWrapper,
+  NotFoundWrapper,
+  StyledLink,
+  TextWrapper,
+} from './PageNotFound.styled';
 
 const PageNotFound = () => {
   return (
-    <CenterWrapper>
+    <NotFoundWrapper>
       <HiddenTitle>Nonexistent Page</HiddenTitle>
-      <Link to="/">Go to Home</Link>
-    </CenterWrapper>
+      <CenterWrapper>
+        <TextWrapper>
+          <BiggerText>Oops!</BiggerText>
+          <BigText>404 - The Page can't be found</BigText>
+        </TextWrapper>
+        <StyledLink to="/">Go to Homepage</StyledLink>
+      </CenterWrapper>
+    </NotFoundWrapper>
   );
 };
 
 export default PageNotFound;
-
-const CenterWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;

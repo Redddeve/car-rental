@@ -7,3 +7,13 @@
   src: url('./fonts/Manrope-Medium.ttf');
   font-weight: 500;
 }
+@font-face {
+  font-family: 'Manrope';
+  src: url('./fonts/Manrope-ExtraLight.ttf');
+  font-weight: 200;
+}
+@font-face {
+  font-family: 'Manrope';
+  src: url('./fonts/Manrope-Bold.ttf');
+  font-weight: 700;
+}

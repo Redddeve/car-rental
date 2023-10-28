@@ -7,7 +7,6 @@ export const StyledHeader = styled.header`
   box-shadow: gray 0px 4px 8px;
   gap: 20px;
   padding: 16px;
-  /* margin-bottom: 16px; */
   font-size: 18px;
 `;
 
