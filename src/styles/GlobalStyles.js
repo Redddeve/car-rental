@@ -56,12 +56,4 @@ img {
 button {
   cursor: pointer;
 }
-
-.active {
-  /* color: red; */
-  /* background-color: blue; */
-}
-
-
-
 `;

@@ -24,10 +24,7 @@ export const Backdrop = styled.div`
 export const ModalWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
-  /* align-items: center; */
   width: 540px;
-  /* height: 750px; */
   padding: 40px;
   border-radius: 24px;
   background: var(--bg);

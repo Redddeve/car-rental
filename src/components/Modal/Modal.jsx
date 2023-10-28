@@ -27,7 +27,6 @@ import {
 } from './Modal.styled';
 
 const Modal = ({ id }) => {
-  // 9582
   const cars = useSelector(selectCars);
   const chosenCar = cars.find(car => car.id === id);
   const {
@@ -48,7 +47,7 @@ const Modal = ({ id }) => {
   } = chosenCar;
   const addressArr = address.split(',');
   const conditionsArr = rentalConditions.split('\n');
-  const { close, isOpen } = useModalContext();
+  const { close } = useModalContext();
   useEffect(() => {
     const handleKeyDown = e => {
       if (e.key === 'Escape') {
@@ -69,7 +68,6 @@ const Modal = ({ id }) => {
     }
   };
   const onCloseBtnClick = e => {
-    console.log(isOpen);
     close();
   };
 
@@ -82,7 +80,7 @@ const Modal = ({ id }) => {
           </StyledSvg>
         </CloseBtn>
         <ModalImg
-          src={`${img}`}
+          src={img}
           alt={model}
           onError={e => {
             e.currentTarget.src = NoImg;

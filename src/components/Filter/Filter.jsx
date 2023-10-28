@@ -35,10 +35,7 @@ const Filter = ({ isCatalog }) => {
   };
 
   function onSubmit({ price, make, mileageFrom, mileageTo }) {
-    console.log(price, make, mileageFrom, mileageTo);
-    console.log(price || make || mileageFrom || mileageTo ? 'true' : 'false');
     if (isCatalog) {
-      console.log('catalog');
       price || make || mileageFrom || mileageTo
         ? dispatch(
             fetchFiltered({
@@ -50,7 +47,6 @@ const Filter = ({ isCatalog }) => {
           )
         : dispatch(fetchAdverts(1));
     } else {
-      console.log('fav');
       dispatch(
         filterFavorites({
           price: price?.value,
