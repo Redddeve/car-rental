@@ -1,7 +1,7 @@
 import CarGallery from 'components/CarGallery/CarGallery';
 import Filter from 'components/Filter/Filter';
 import LoadMoreBtn from 'components/LoadMoreBtn/LoadMoreBtn';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   fetchAdverts,
@@ -24,6 +24,7 @@ const Catalog = () => {
   const loading = useSelector(selectLoading);
   const isFiltered = useSelector(selectIsFiltered);
   const filter = useSelector(selectFilter);
+  const ref = useRef();
 
   useEffect(() => {
     dispatch(fetchAdverts(1));
@@ -38,6 +39,12 @@ const Catalog = () => {
       const filterParams = { ...filter, page: nextPage };
       dispatch(fetchFiltered(filterParams));
     }
+    setTimeout(() => {
+      window.scrollBy({
+        top: 600,
+        behavior: 'smooth',
+      });
+    }, 500);
   }
 
   function onFavoriteClick(car, favorite) {
@@ -53,7 +60,7 @@ const Catalog = () => {
       <HiddenTitle>Car Catalog</HiddenTitle>
       <Filter isCatalog={true} />
       {cars.length !== 0 && (
-        <CarGallery cars={cars} onFavoriteClick={onFavoriteClick} />
+        <CarGallery ref={ref} cars={cars} onFavoriteClick={onFavoriteClick} />
       )}
       {!loading &&
         cars.length !== 0 &&

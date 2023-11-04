@@ -2,6 +2,7 @@ import styled from 'styled-components';
 export const StyledWrapper = styled.div`
   display: flex;
   justify-content: center;
+  margin-bottom: 30px;
 `;
 
 export const StyledButton = styled.button`
